@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rede Acolher - CEDAS | Apresentação Institucional</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --blue-dark: #1a3a5c;
+    --blue-primary: #2b6cb0;
+    --blue-light: #4a9bd9;
+    --blue-accent: #63b3ed;
+    --green-primary: #38a169;
+    --green-light: #48bb78;
+    --gray-50: #f7fafc;
+    --gray-100: #edf2f7;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e0;
+    --gray-600: #718096;
+    --gray-700: #4a5568;
+    --gray-800: #2d3748;
+    --gray-900: #1a202c;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--gray-200);
+    transition: var(--transition);
+  }
+
+  .nav.scrolled {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--blue-primary), var(--green-primary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .nav-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-dark);
+  }
+
+  .nav-logo-text span {
+    color: var(--green-primary);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray-600);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: var(--transition);
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--blue-primary);
+    background: rgba(43, 108, 176, 0.08);
+  }
+
+  .nav-mobile-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav-mobile-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gray-800);
+    margin: 5px 0;
+    transition: var(--transition);
+    border-radius: 2px;
+  }
+
+  /* ===== SLIDE SYSTEM ===== */
+  .slide {
+    min-height: 100vh;
+    padding: 100px 24px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    max-width: 1100px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .slide-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== HERO SLIDE ===== */
+  .hero {
+    background: linear-gradient(135deg, #0f2b46 0%, #1a4a7a 40%, #1e5a8a 70%, #145a3a 100%);
+    color: white;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(56,161,105,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99,179,237,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero .slide-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .hero-title .accent {
+    background: linear-gradient(90deg, var(--blue-accent), var(--green-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+  }
+
+  .hero-tagline {
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 48px;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-number {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--blue-accent), var(--green-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+  }
+
+  .scroll-indicator .arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid rgba(255,255,255,0.4);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-primary);
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 36px;
+  }
+
+  .section-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 24px;
+    height: 2px;
+    background: var(--blue-primary);
+    transform: translateY(-50%);
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--gray-900);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--gray-600);
+    max-width: 700px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ===== CARDS ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--gray-100);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-primary), var(--green-primary));
+    opacity: 0;
+    transition: var(--transition);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card-icon.blue { background: rgba(43, 108, 176, 0.1); color: var(--blue-primary); }
+  .card-icon.green { background: rgba(56, 161, 105, 0.1); color: var(--green-primary); }
+  .card-icon.teal { background: rgba(49, 151, 149, 0.1); color: #319795; }
+  .card-icon.purple { background: rgba(128, 90, 213, 0.1); color: #805ad5; }
+  .card-icon.orange { background: rgba(221, 107, 32, 0.1); color: #dd6b20; }
+  .card-icon.red { background: rgba(229, 62, 62, 0.1); color: #e53e3e; }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .card-number {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--gray-100);
+    line-height: 1;
+  }
+
+  /* ===== SPLIT LAYOUT ===== */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .split-visual {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
+    border-radius: 24px;
+    padding: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .split-visual::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .split-visual-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .split-visual-list {
+    list-style: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .split-visual-list li {
+    padding: 10px 0;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.9;
+  }
+
+  .split-visual-list li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--green-light);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--blue-primary), var(--green-primary));
+    border-radius: 3px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .timeline-dot {
+    width: 56px;
+    height: 56px;
+    background: white;
+    border: 3px solid var(--blue-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--blue-primary);
+    flex-shrink: 0;
+    z-index: 2;
+    transition: var(--transition);
+  }
+
+  .timeline-item:hover .timeline-dot {
+    background: var(--blue-primary);
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .timeline-content {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    flex: 1;
+    border: 1px solid var(--gray-100);
+    transition: var(--transition);
+  }
+
+  .timeline-item:hover .timeline-content {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+
+  .timeline-text {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* ===== TWO COLUMNS BOX ===== */
+  .two-col-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .col-box {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+  }
+
+  .col-box-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--gray-100);
+  }
+
+  .col-box-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .col-box-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .col-box ul {
+    list-style: none;
+  }
+
+  .col-box li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--gray-700);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .col-box li:last-child { border-bottom: none; }
+
+  .col-box li .check {
+    color: var(--green-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .col-box li .cross {
+    color: #e53e3e;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ===== METRICS ===== */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .metric-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .metric-header {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .metric-header.blue { background: rgba(43,108,176,0.1); color: var(--blue-primary); }
+  .metric-header.green { background: rgba(56,161,105,0.1); color: var(--green-primary); }
+  .metric-header.purple { background: rgba(128,90,213,0.1); color: #805ad5; }
+
+  .metric-list {
+    list-style: none;
+    text-align: left;
+  }
+
+  .metric-list li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--gray-700);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .metric-list li:last-child { border-bottom: none; }
+
+  .metric-list .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .metric-list .dot.blue { background: var(--blue-primary); }
+  .metric-list .dot.green { background: var(--green-primary); }
+  .metric-list .dot.purple { background: #805ad5; }
+
+  /* ===== BENEFITS ===== */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .benefit-col {
+    padding: 40px 32px;
+    color: white;
+  }
+
+  .benefit-col:nth-child(1) { background: var(--blue-dark); }
+  .benefit-col:nth-child(2) { background: var(--blue-primary); }
+  .benefit-col:nth-child(3) { background: var(--gray-800); }
+
+  .benefit-col-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .benefit-col-title .icon { font-size: 20px; }
+
+  .benefit-col ul {
+    list-style: none;
+  }
+
+  .benefit-col li {
+    padding: 10px 0;
+    font-size: 14px;
+    opacity: 0.9;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .benefit-col li .bullet {
+    color: var(--green-light);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ===== GOVERNANCE ===== */
+  .gov-commission {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .gov-commission-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 32px;
+  }
+
+  .gov-members {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .gov-member {
+    width: 140px;
+    text-align: center;
+  }
+
+  .gov-member-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .gov-member-avatar.blue { background: rgba(43,108,176,0.1); }
+  .gov-member-avatar.green { background: rgba(56,161,105,0.1); }
+  .gov-member-avatar.gray { background: rgba(113,128,150,0.1); }
+
+  .gov-member-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+
+  .gov-plus {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--gray-300);
+  }
+
+  .gov-functions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .gov-function {
+    padding: 8px 20px;
+    background: var(--gray-50);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-700);
+  }
+
+  /* ===== COMPLIANCE ===== */
+  .compliance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .compliance-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+    border-top: 4px solid transparent;
+    transition: var(--transition);
+  }
+
+  .compliance-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .compliance-card:nth-child(1) { border-top-color: var(--blue-primary); }
+  .compliance-card:nth-child(2) { border-top-color: #805ad5; }
+  .compliance-card:nth-child(3) { border-top-color: var(--green-primary); }
+
+  .compliance-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .compliance-list {
+    list-style: none;
+  }
+
+  .compliance-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--gray-600);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .compliance-list .icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ===== PARTNERSHIP STEPS ===== */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+  }
+
+  .step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .step-number {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--blue-primary), var(--blue-light));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 auto 20px;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+  }
+
+  .step-items {
+    list-style: none;
+    text-align: left;
+  }
+
+  .step-items li {
+    padding: 4px 0;
+    font-size: 13px;
+    color: var(--gray-600);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .step-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    background: var(--blue-accent);
+    border-radius: 50%;
+  }
+
+  .step-connector {
+    display: none;
+  }
+
+  /* ===== CTA SLIDE ===== */
+  .cta-slide {
+    background: linear-gradient(135deg, #0f2b46 0%, #1a4a7a 50%, #145a3a 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .cta-quote {
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-next-steps h3,
+  .cta-contact h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--green-light);
+  }
+
+  .cta-next-steps ol {
+    list-style: none;
+    counter-reset: steps;
+  }
+
+  .cta-next-steps li {
+    counter-increment: steps;
+    padding: 8px 0;
+    font-size: 14px;
+    opacity: 0.85;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cta-next-steps li::before {
+    content: counter(steps);
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .cta-contact-item {
+    padding: 8px 0;
+    font-size: 14px;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cta-contact-item .label {
+    font-weight: 600;
+    color: var(--blue-accent);
+    min-width: 80px;
+  }
+
+  /* ===== HIGHLIGHTED BOX ===== */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
+    color: white;
+    border-radius: 16px;
+    padding: 28px 36px;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .highlight-box .icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .highlight-box.green {
+    background: linear-gradient(135deg, #1a5a3a, var(--green-primary));
+  }
+
+  /* ===== SLIDE COUNTER ===== */
+  .slide-counter {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(26,58,92,0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-primary), var(--green-primary));
+    z-index: 999;
+    transition: width 0.3s ease;
+  }
+
+  /* ===== KEYBOARD SHORTCUTS ===== */
+  .shortcuts-hint {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(26,58,92,0.9);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    opacity: 0.6;
+    transition: var(--transition);
+  }
+
+  .shortcuts-hint:hover { opacity: 1; }
+
+  .shortcuts-hint kbd {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0 2px;
+    font-family: inherit;
+  }
+
+  /* ===== SUSTAINABILITY ===== */
+  .sust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .sust-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+  }
+
+  .sust-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sust-card-title .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .sust-card-title .dot.blue { background: var(--blue-primary); }
+  .sust-card-title .dot.green { background: var(--green-primary); }
+  .sust-card-title .dot.gray { background: var(--gray-600); }
+
+  .sust-list {
+    list-style: none;
+  }
+
+  .sust-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--gray-600);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .sust-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 8px;
+    height: 2px;
+    background: var(--gray-300);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .split { grid-template-columns: 1fr; gap: 32px; }
+    .metrics-grid, .compliance-grid, .benefits-grid, .sust-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col-box { grid-template-columns: 1fr; }
+    .cta-info { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-mobile-btn { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+    .slide { padding: 90px 16px 40px; }
+    .hero-stats { gap: 24px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .shortcuts-hint { display: none; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .nav, .progress-bar, .slide-counter, .shortcuts-hint, .scroll-indicator { display: none; }
+    .slide { min-height: auto; page-break-inside: avoid; padding: 40px 20px; }
+    .slide-content { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">RA</div>
+      <div class="nav-logo-text">REDE <span>ACOLHER</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="active">Inicio</a></li>
+      <li><a href="#problema">Contexto</a></li>
+      <li><a href="#quem-somos">Quem Somos</a></li>
+      <li><a href="#missao">Missao</a></li>
+      <li><a href="#atuacao">Atuacao</a></li>
+      <li><a href="#publico">Publico</a></li>
+      <li><a href="#cooperacao">Cooperacao</a></li>
+      <li><a href="#fluxo">Fluxo</a></li>
+      <li><a href="#governanca">Governanca</a></li>
+      <li><a href="#beneficios">Beneficios</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="nav-mobile-btn" id="mobileBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Slide Counter -->
+<div class="slide-counter" id="slideCounter">1 / 14</div>
+
+<!-- Keyboard Shortcuts -->
+<div class="shortcuts-hint">
+  <kbd>&darr;</kbd> <kbd>&uarr;</kbd> navegar &nbsp;|&nbsp; <kbd>F</kbd> tela cheia
+</div>
+
+<!-- ============================================ -->
+<!-- SLIDE 1: HERO -->
+<!-- ============================================ -->
+<section class="slide hero" id="hero">
+  <div class="slide-content">
+    <div class="hero-badge">Apresentacao Tecnica para Instituicoes Hospitalares</div>
+    <h1 class="hero-title">
+      Rede <span class="accent">Acolher</span>
+    </h1>
+    <p class="hero-subtitle">Centro de Defesa e Amparo em Saude - CEDAS</p>
+    <p class="hero-tagline">Cuidar. Defender. Garantir o Direito a Vida.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number">6</div>
+        <div class="hero-stat-label">Areas de Atuacao</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">5</div>
+        <div class="hero-stat-label">Grupos Atendidos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">100%</div>
+        <div class="hero-stat-label">Gratuito</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" onclick="scrollToSlide(1)">
+    <span>Role para baixo</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 2: O PROBLEMA -->
+<!-- ============================================ -->
+<section class="slide" id="problema">
+  <div class="slide-content">
+    <div class="split">
+      <div>
+        <span class="section-label">Contexto</span>
+        <h2 class="section-title">Vulnerabilidade em Saude</h2>
+        <p class="section-desc">
+          O sistema de saude contemporaneo enfrenta uma fragilidade estrutural: pacientes em <strong>alta complexidade clinica</strong> frequentemente encontram-se em situacao de <strong>vulnerabilidade socioeconomica</strong>.
+        </p>
+        <p class="section-desc">
+          Essa condicao impoe barreiras significativas no acesso a tratamentos essenciais, medicamentos de alto custo e cuidados especializados, exigindo uma resposta institucional robusta.
+        </p>
+      </div>
+      <div class="split-visual">
+        <div class="split-visual-title">Grupos Prioritarios Afetados</div>
+        <ul class="split-visual-list">
+          <li>Pacientes com doencas raras e oncologicas</li>
+          <li>Usuarios de terapias de alto custo</li>
+          <li>Familias em situacao de vulnerabilidade social</li>
+          <li>Pacientes em cuidados domiciliares (home care)</li>
+          <li>Pacientes cardiacos e neurologicos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 3: QUEM SOMOS -->
+<!-- ============================================ -->
+<section class="slide" id="quem-somos">
+  <div class="slide-content">
+    <span class="section-label">Institucional</span>
+    <h2 class="section-title">Quem Somos</h2>
+    <p class="section-desc">
+      A <strong>Rede Acolher</strong> e um programa institucional vinculado ao <strong>IDEST</strong> (Instituto de Desenvolvimento Educacional, Social, Tecnologico e Servicos), organizado como Centro de Defesa e Amparo em Saude (CEDAS).
+    </p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon blue">&#9829;</div>
+        <div class="card-title">Assistencia Social</div>
+        <div class="card-text">Assistencia social especializada e humanizada para pacientes e familiares em situacao de vulnerabilidade.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon green">&#9881;</div>
+        <div class="card-title">Orientacao Tecnica</div>
+        <div class="card-text">Orientacao tecnica e mediacao administrativa junto ao SUS e operadoras de planos de saude.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon teal">&#9878;</div>
+        <div class="card-title">Suporte Juridico</div>
+        <div class="card-text">Suporte juridico estrategico e qualificado na area de direito sanitario e acesso a saude.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">&#9733;</div>
+        <div class="card-title">Rede Multidisciplinar</div>
+        <div class="card-text">Articulacao com profissionais de diversas areas para ampliar o suporte integral ao paciente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 4: MISSAO, VISAO E VALORES -->
+<!-- ============================================ -->
+<section class="slide" id="missao">
+  <div class="slide-content">
+    <span class="section-label">Proposito</span>
+    <h2 class="section-title">Missao, Visao e Valores</h2>
+    <div class="two-col-box" style="margin-bottom: 32px;">
+      <div class="col-box">
+        <div class="col-box-header">
+          <div class="col-box-icon blue" style="background: rgba(43,108,176,0.1); color: var(--blue-primary);">&#9678;</div>
+          <div class="col-box-heading">Missao</div>
+        </div>
+        <p style="font-size: 15px; color: var(--gray-700); line-height: 1.7;">
+          Garantir acolhimento integral e defesa efetiva do direito a saude de pacientes de alta complexidade, promovendo acesso a tratamentos, medicamentos e cuidados essenciais a preservacao da vida.
+        </p>
+      </div>
+      <div class="col-box">
+        <div class="col-box-header">
+          <div class="col-box-icon green" style="background: rgba(56,161,105,0.1); color: var(--green-primary);">&#9673;</div>
+          <div class="col-box-heading">Visao</div>
+        </div>
+        <p style="font-size: 15px; color: var(--gray-700); line-height: 1.7;">
+          Ser referencia regional e nacional em assistencia social e defesa de direitos em saude, consolidando modelo institucional de impacto, governanca e transparencia.
+        </p>
+      </div>
+    </div>
+    <div class="highlight-box green">
+      <div class="icon">&#9733;</div>
+      <div>
+        <strong>Valores Fundamentais:</strong> Dignidade da pessoa humana &bull; Humanizacao do atendimento &bull; Transparencia institucional &bull; Responsabilidade social &bull; Etica profissional e institucional
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 5: PUBLICO-ALVO -->
+<!-- ============================================ -->
+<section class="slide" id="publico">
+  <div class="slide-content">
+    <span class="section-label">Elegibilidade</span>
+    <h2 class="section-title">Publico-Alvo</h2>
+    <p class="section-desc">Pacientes atendidos pela Rede Acolher com base no criterio essencial de alta complexidade clinica associada a vulnerabilidade socioeconomica.</p>
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="card">
+        <div class="card-icon blue">&#9764;</div>
+        <div class="card-title">Doencas Raras</div>
+        <div class="card-text">Pacientes diagnosticados com condicoes raras que demandam tratamento especializado.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon red">&#9876;</div>
+        <div class="card-title">Oncologicos</div>
+        <div class="card-text">Pacientes em tratamento oncologico de alta complexidade.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">&#9829;</div>
+        <div class="card-title">Cardiacos e Neurologicos</div>
+        <div class="card-text">Pacientes com condicoes cardiovasculares e neurologicas graves.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon green">&#8962;</div>
+        <div class="card-title">Home Care</div>
+        <div class="card-text">Usuarios de servicos de cuidados domiciliares continuados.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">&#9883;</div>
+        <div class="card-title">Alto Custo</div>
+        <div class="card-text">Pacientes que necessitam de medicamentos ou terapias de alto custo.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon teal">&#9734;</div>
+        <div class="card-title">Vulnerabilidade Social</div>
+        <div class="card-text">Familias em situacao de vulnerabilidade socioeconomica.</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top: 32px;">
+      <div class="icon">&#9888;</div>
+      <div><strong>Criterio Essencial:</strong> Alta complexidade clinica associada a vulnerabilidade socioeconomica, requerendo apoio multidisciplinar para acesso e continuidade terapeutica.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 6: AREAS DE ATUACAO -->
+<!-- ============================================ -->
+<section class="slide" id="atuacao">
+  <div class="slide-content">
+    <span class="section-label">Servicos</span>
+    <h2 class="section-title">Areas de Atuacao Tecnica</h2>
+    <p class="section-desc">Servicos especializados oferecidos de forma gratuita aos pacientes.</p>
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+      <div class="card">
+        <div class="card-number">1</div>
+        <div class="card-icon blue">&#9878;</div>
+        <div class="card-title">Orientacao e Defesa de Direitos</div>
+        <div class="card-text">Assessoria juridica especializada para garantir o acesso a tratamentos essenciais.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">2</div>
+        <div class="card-icon green">&#9883;</div>
+        <div class="card-title">Acesso a Medicamentos e Terapias</div>
+        <div class="card-text">Mediacao administrativa para obtencao de itens de alto custo junto ao SUS e operadoras.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">3</div>
+        <div class="card-icon teal">&#9881;</div>
+        <div class="card-title">Mediacao junto ao SUS e Planos</div>
+        <div class="card-text">Resolucao agil de barreiras de acesso e negativas de cobertura.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">4</div>
+        <div class="card-icon purple">&#8962;</div>
+        <div class="card-title">Suporte para Home Care</div>
+        <div class="card-text">Orientacao tecnica e social para implementacao de cuidados domiciliares.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">5</div>
+        <div class="card-icon orange">&#9829;</div>
+        <div class="card-title">Acompanhamento Social</div>
+        <div class="card-text">Assistencia social estruturada para pacientes e familiares durante todo o percurso.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">6</div>
+        <div class="card-icon red">&#9733;</div>
+        <div class="card-title">Encaminhamento Tecnico e Juridico</div>
+        <div class="card-text">Conexao com rede de profissionais especializados em diversas areas.</div>
+      </div>
+    </div>
+    <div class="highlight-box green" style="margin-top: 32px;">
+      <div class="icon">&#10003;</div>
+      <div>Todos os servicos sao prestados de forma <strong>gratuita</strong> aos pacientes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 7: MODELO DE COOPERACAO -->
+<!-- ============================================ -->
+<section class="slide" id="cooperacao">
+  <div class="slide-content">
+    <span class="section-label">Parceria</span>
+    <h2 class="section-title">Modelo de Cooperacao Tecnica</h2>
+    <p class="section-desc">
+      A Rede Acolher opera atraves de <strong>Termo de Cooperacao Tecnica</strong> que estabelece parceria institucional formal entre o IDEST e hospitais ou instituicoes de saude.
+    </p>
+    <div class="cards-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="card">
+        <div class="card-icon blue">&#9733;</div>
+        <div class="card-title">Integracao Institucional</div>
+        <div class="card-text">Integracao ao ciclo de entes propiciadores de saude, fortalecendo a rede assistencial.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon green">&#9881;</div>
+        <div class="card-title">Gestao Desburocratizada</div>
+        <div class="card-text">Agilidade na gestao de acoes de assistencia a saude, focando na eficiencia do atendimento.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon teal">&#9829;</div>
+        <div class="card-title">Foco no Paciente SUS</div>
+        <div class="card-text">Prioridade para pacientes em tratamento oncologico e de alta complexidade pelo SUS.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">&#9734;</div>
+        <div class="card-title">Articulacao em Rede</div>
+        <div class="card-text">Conexao direta com a rede municipal e estadual do SUS para otimizar fluxos.</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top: 32px;">
+      <div class="icon">&#9654;</div>
+      <div><strong>Objetivo:</strong> Promover integracao institucional para ampliar acesso a servicos de apoio social, juridico, psicologico, fisioterapia e terapia ocupacional.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 8: RESPONSABILIDADES -->
+<!-- ============================================ -->
+<section class="slide" id="responsabilidades">
+  <div class="slide-content">
+    <span class="section-label">Obrigacoes</span>
+    <h2 class="section-title">Responsabilidades das Partes</h2>
+    <div class="two-col-box">
+      <div class="col-box">
+        <div class="col-box-header">
+          <div class="col-box-icon" style="background: rgba(43,108,176,0.1); color: var(--blue-primary); font-size: 20px;">&#127975;</div>
+          <div class="col-box-heading">Hospital</div>
+        </div>
+        <ul>
+          <li><span class="check">&#10003;</span> Espaco fisico adequado (duas salas) sem onus ao IDEST</li>
+          <li><span class="check">&#10003;</span> Integracao operacional (fluxos e encaminhamentos)</li>
+          <li><span class="check">&#10003;</span> Cooperacao na organizacao dos atendimentos</li>
+          <li><span class="check">&#10003;</span> Comunicacao de circunstancias impactantes</li>
+          <li style="margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--gray-200); font-weight: 600; color: var(--gray-800);">Nao assume:</li>
+          <li><span class="cross">&#10007;</span> Repasse financeiro de qualquer natureza</li>
+          <li><span class="cross">&#10007;</span> Custeio de profissionais, insumos ou materiais</li>
+          <li><span class="cross">&#10007;</span> Obrigacoes trabalhistas ou tributarias</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <div class="col-box-header">
+          <div class="col-box-icon" style="background: rgba(56,161,105,0.1); color: var(--green-primary); font-size: 20px;">&#9733;</div>
+          <div class="col-box-heading">IDEST / Rede Acolher</div>
+        </div>
+        <ul>
+          <li><span class="check">&#10003;</span> Custeio operacional exclusivo e integral</li>
+          <li><span class="check">&#10003;</span> Contratacao de equipe multidisciplinar</li>
+          <li><span class="check">&#10003;</span> Pagamento de encargos sociais e trabalhistas</li>
+          <li><span class="check">&#10003;</span> Aquisicao de equipamentos e insumos</li>
+          <li><span class="check">&#10003;</span> Protocolos e rotinas de atendimento</li>
+          <li><span class="check">&#10003;</span> Supervisao e avaliacao continua</li>
+          <li><span class="check">&#10003;</span> Registros e relatorios de acompanhamento</li>
+          <li><span class="check">&#10003;</span> Gratuidade integral aos pacientes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top: 24px;">
+      <div class="icon">&#9733;</div>
+      <div><strong>Beneficio Estrategico:</strong> Ampliacao de servicos de apoio aos pacientes sem impacto financeiro direto para o hospital.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 9: FLUXO OPERACIONAL -->
+<!-- ============================================ -->
+<section class="slide" id="fluxo">
+  <div class="slide-content">
+    <span class="section-label">Processo</span>
+    <h2 class="section-title">Fluxo Operacional de Atendimento</h2>
+    <p class="section-desc">Processo estruturado de acolhimento e acompanhamento do paciente.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Acolhimento e Avaliacao</div>
+          <div class="timeline-text">Escuta qualificada e analise socioeconomica para identificar necessidades do paciente e familia.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Orientacao e Mediacao</div>
+          <div class="timeline-text">Atuacao junto ao SUS, secretarias e operadoras para viabilizar tratamentos e terapias necessarias.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Suporte Tecnico e Juridico</div>
+          <div class="timeline-text">Orientacao juridica especializada e mediacao administrativa prioritaria para garantir direitos.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">4</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Rede Multidisciplinar</div>
+          <div class="timeline-text">Articulacao com profissionais e instituicoes para ampliar suporte integral ao paciente.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">5</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Acompanhamento Continuo</div>
+          <div class="timeline-text">Rastreabilidade das demandas e registro de evolucao do caso ao longo de todo o percurso.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 10: GOVERNANCA -->
+<!-- ============================================ -->
+<section class="slide" id="governanca">
+  <div class="slide-content">
+    <span class="section-label">Controle</span>
+    <h2 class="section-title">Estrutura de Governanca</h2>
+    <p class="section-desc">Mecanismos de acompanhamento, avaliacao e transparencia institucional.</p>
+
+    <div class="gov-commission">
+      <div class="gov-commission-title">Comissao de Acompanhamento Tecnica</div>
+      <div class="gov-members">
+        <div class="gov-member">
+          <div class="gov-member-avatar blue">&#127975;</div>
+          <div class="gov-member-label">1 Rep. Hospital</div>
+        </div>
+        <div class="gov-plus">+</div>
+        <div class="gov-member">
+          <div class="gov-member-avatar green">&#9733;</div>
+          <div class="gov-member-label">1 Rep. IDEST</div>
+        </div>
+        <div class="gov-plus">+</div>
+        <div class="gov-member">
+          <div class="gov-member-avatar gray">&#9873;</div>
+          <div class="gov-member-label">1 Membro Independente</div>
+        </div>
+      </div>
+      <div class="gov-functions">
+        <div class="gov-function">Monitoramento de metas</div>
+        <div class="gov-function">Validacao de relatorios</div>
+        <div class="gov-function">Ajustes operacionais</div>
+        <div class="gov-function">Regimento proprio</div>
+      </div>
+    </div>
+
+    <div class="two-col-box">
+      <div class="col-box">
+        <div class="col-box-header">
+          <div class="col-box-icon" style="background: rgba(43,108,176,0.1); color: var(--blue-primary); font-size: 18px;">&#9878;</div>
+          <div class="col-box-heading">Controle</div>
+        </div>
+        <ul>
+          <li><span class="check">&#10003;</span> Fornecimento de documentos</li>
+          <li><span class="check">&#10003;</span> Relatorios periodicos de execucao</li>
+          <li><span class="check">&#10003;</span> Indicadores de desempenho</li>
+          <li><span class="check">&#10003;</span> Auditoria interna e externa</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <div class="col-box-header">
+          <div class="col-box-icon" style="background: rgba(56,161,105,0.1); color: var(--green-primary); font-size: 18px;">&#9673;</div>
+          <div class="col-box-heading">Transparencia</div>
+        </div>
+        <ul>
+          <li><span class="check">&#10003;</span> Rastreabilidade de demandas</li>
+          <li><span class="check">&#10003;</span> Prestacao de contas regular</li>
+          <li><span class="check">&#10003;</span> Indicadores de impacto social</li>
+          <li><span class="check">&#10003;</span> Conformidade legal e compliance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 11: INDICADORES DE IMPACTO -->
+<!-- ============================================ -->
+<section class="slide" id="impacto">
+  <div class="slide-content">
+    <span class="section-label">Metricas</span>
+    <h2 class="section-title">Indicadores de Impacto Social</h2>
+    <p class="section-desc">Metricas de desempenho e resultados monitoradas continuamente.</p>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-header blue">Acesso</div>
+        <ul class="metric-list">
+          <li><span class="dot blue"></span> Numero de pacientes acolhidos e acompanhados</li>
+          <li><span class="dot blue"></span> Taxa de elegibilidade e inclusao no programa</li>
+          <li><span class="dot blue"></span> Tempo medio de resposta as demandas</li>
+        </ul>
+      </div>
+      <div class="metric-card">
+        <div class="metric-header green">Resultado</div>
+        <ul class="metric-list">
+          <li><span class="dot green"></span> Ampliacao do acesso a tratamentos essenciais</li>
+          <li><span class="dot green"></span> Reducao da vulnerabilidade de pacientes graves</li>
+          <li><span class="dot green"></span> Acoes judiciais bem-sucedidas</li>
+          <li><span class="dot green"></span> Medicamentos e terapias viabilizadas</li>
+        </ul>
+      </div>
+      <div class="metric-card">
+        <div class="metric-header purple">Impacto Social</div>
+        <ul class="metric-list">
+          <li><span class="dot purple"></span> Reducao de desigualdades no tratamento</li>
+          <li><span class="dot purple"></span> Fortalecimento da cidadania em saude</li>
+          <li><span class="dot purple"></span> Qualidade da assessoria juridica</li>
+          <li><span class="dot purple"></span> Satisfacao de pacientes e familiares</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 12: COMPLIANCE -->
+<!-- ============================================ -->
+<section class="slide" id="compliance">
+  <div class="slide-content">
+    <span class="section-label">Regulatorio</span>
+    <h2 class="section-title">Conformidade Legal e Compliance</h2>
+    <p class="section-desc">Obrigacoes regulatorias, eticas e de seguranca juridica para ambas as instituicoes.</p>
+    <div class="compliance-grid">
+      <div class="compliance-card">
+        <div class="compliance-title"><span style="color: var(--blue-primary);">&#9878;</span> Conformidade Legal</div>
+        <ul class="compliance-list">
+          <li><span class="icon" style="color: var(--blue-primary);">&#9679;</span> Adesao a Lei 12.846/2013 (Anticorrupcao)</li>
+          <li><span class="icon" style="color: var(--blue-primary);">&#9679;</span> Protecao de dados e sigilo</li>
+          <li><span class="icon" style="color: var(--blue-primary);">&#9679;</span> Normas do Ministerio da Saude</li>
+          <li><span class="icon" style="color: var(--blue-primary);">&#9679;</span> Regulamentacoes estaduais e municipais</li>
+        </ul>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-title"><span style="color: #805ad5;">&#9878;</span> Principios Eticos</div>
+        <ul class="compliance-list">
+          <li><span class="icon" style="color: #805ad5;">&#9679;</span> Etica, transparencia e moralidade</li>
+          <li><span class="icon" style="color: #805ad5;">&#9679;</span> Vedacao de vantagens indevidas</li>
+          <li><span class="icon" style="color: #805ad5;">&#9679;</span> Proibicao de contribuicoes ilicitas</li>
+          <li><span class="icon" style="color: #805ad5;">&#9679;</span> Conduta compativel de todos</li>
+        </ul>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-title"><span style="color: var(--green-primary);">&#9878;</span> Responsabilidades</div>
+        <ul class="compliance-list">
+          <li><span class="icon" style="color: var(--green-primary);">&#9679;</span> Cada parte responde por seus empregados</li>
+          <li><span class="icon" style="color: var(--green-primary);">&#9679;</span> Inexistencia de solidariedade entre participes</li>
+          <li><span class="icon" style="color: var(--green-primary);">&#9679;</span> Responsabilidade exclusiva por obrigacoes</li>
+          <li><span class="icon" style="color: var(--green-primary);">&#9679;</span> Seguranca juridica para ambas as partes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 13: BENEFICIOS -->
+<!-- ============================================ -->
+<section class="slide" id="beneficios">
+  <div class="slide-content">
+    <span class="section-label">Valor</span>
+    <h2 class="section-title">Beneficios para a Instituicao Hospitalar</h2>
+    <p class="section-desc">Valor agregado da parceria institucional em tres dimensoes estrategicas.</p>
+    <div class="benefits-grid">
+      <div class="benefit-col">
+        <div class="benefit-col-title"><span class="icon">&#9881;</span> Operacionais</div>
+        <ul>
+          <li><span class="bullet">&#10003;</span> Ampliacao de servicos sem custo direto</li>
+          <li><span class="bullet">&#10003;</span> Reducao de demandas judiciais</li>
+          <li><span class="bullet">&#10003;</span> Melhoria na continuidade do cuidado pos-alta</li>
+          <li><span class="bullet">&#10003;</span> Fortalecimento da rede assistencial</li>
+        </ul>
+      </div>
+      <div class="benefit-col">
+        <div class="benefit-col-title"><span class="icon">&#127975;</span> Institucionais</div>
+        <ul>
+          <li><span class="bullet">&#10003;</span> Alinhamento com responsabilidade social</li>
+          <li><span class="bullet">&#10003;</span> Fortalecimento da reputacao</li>
+          <li><span class="bullet">&#10003;</span> Conformidade com humanizacao</li>
+          <li><span class="bullet">&#10003;</span> Compromisso com equidade em saude</li>
+        </ul>
+      </div>
+      <div class="benefit-col">
+        <div class="benefit-col-title"><span class="icon">&#9829;</span> Para Pacientes</div>
+        <ul>
+          <li><span class="bullet">&#10003;</span> Orientacao juridica especializada</li>
+          <li><span class="bullet">&#10003;</span> Apoio psicossocial estruturado</li>
+          <li><span class="bullet">&#10003;</span> Mediacao para tratamentos de alto custo</li>
+          <li><span class="bullet">&#10003;</span> Acompanhamento integral completo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 14: FORMALIZACAO DA PARCERIA -->
+<!-- ============================================ -->
+<section class="slide" id="formalizacao">
+  <div class="slide-content">
+    <span class="section-label">Implementacao</span>
+    <h2 class="section-title">Processo de Formalizacao</h2>
+    <p class="section-desc">Etapas claras e estruturadas para implementacao da cooperacao tecnica.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-title">Negociacao e Alinhamento</div>
+        <ul class="step-items">
+          <li>Apresentacao do programa</li>
+          <li>Discussao de necessidades</li>
+          <li>Alinhamento de objetivos</li>
+        </ul>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-title">Formalizacao</div>
+        <ul class="step-items">
+          <li>Assinatura do Termo de Cooperacao</li>
+          <li>Constituicao da Comissao</li>
+          <li>Indicacao de representantes</li>
+        </ul>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-title">Implementacao</div>
+        <ul class="step-items">
+          <li>Elaboracao do Plano de Trabalho</li>
+          <li>Definicao de protocolos</li>
+          <li>Preparacao de espacos</li>
+          <li>Treinamento de equipes</li>
+        </ul>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-title">Operacionalizacao</div>
+        <ul class="step-items">
+          <li>Inicio do atendimento</li>
+          <li>Monitoramento continuo</li>
+          <li>Ajustes conforme necessario</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 15: SUSTENTABILIDADE -->
+<!-- ============================================ -->
+<section class="slide" id="sustentabilidade">
+  <div class="slide-content">
+    <span class="section-label">Financeiro</span>
+    <h2 class="section-title">Sustentabilidade Financeira</h2>
+    <p class="section-desc">Modelo de custeio robusto que garante a continuidade e gratuidade do programa.</p>
+    <div class="sust-grid">
+      <div class="sust-card">
+        <div class="sust-card-title"><span class="dot blue"></span> Fontes de Custeio</div>
+        <ul class="sust-list">
+          <li>Recursos proprios do IDEST</li>
+          <li>Receitas operacionais</li>
+          <li>Doacoes e patrocinios</li>
+          <li>Subvencoes e incentivos legais</li>
+          <li>Parcerias com empresas ESG</li>
+        </ul>
+      </div>
+      <div class="sust-card">
+        <div class="sust-card-title"><span class="dot green"></span> Planejamento</div>
+        <ul class="sust-list">
+          <li>Plano de sustentabilidade financeira</li>
+          <li>Captacao de recursos estrategicos</li>
+          <li>Economicidade nas contratacoes</li>
+          <li>Observancia rigorosa da legislacao</li>
+        </ul>
+      </div>
+      <div class="sust-card">
+        <div class="sust-card-title"><span class="dot gray"></span> Continuidade</div>
+        <ul class="sust-list">
+          <li>Compromisso com manutencao de atividades</li>
+          <li>Gratuidade integral aos pacientes</li>
+          <li>Vedacao de cobrancas diretas ou indiretas</li>
+          <li>Responsabilidade exclusiva do IDEST</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 16: CONTATO / CTA -->
+<!-- ============================================ -->
+<section class="slide cta-slide" id="contato">
+  <div class="slide-content">
+    <h2 style="font-size: clamp(28px, 4vw, 44px); font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1;">
+      Rede Acolher: Compromisso com a Vida
+    </h2>
+    <div class="cta-quote">
+      "Porque cuidar e um dever. E defender o direito a saude e um compromisso inegociavel."
+    </div>
+    <div class="cta-info">
+      <div class="cta-next-steps">
+        <h3>Proximas Etapas</h3>
+        <ol>
+          <li>Agendamento de reuniao tecnica para apresentacao detalhada</li>
+          <li>Discussao de capacidades operacionais e necessidades</li>
+          <li>Elaboracao conjunta do Plano de Trabalho</li>
+          <li>Formalizacao da parceria e inicio da implementacao</li>
+        </ol>
+      </div>
+      <div class="cta-contact">
+        <h3>Contato Institucional</h3>
+        <div class="cta-contact-item">
+          <span class="label">Instituicao</span>
+          <span>IDEST</span>
+        </div>
+        <div class="cta-contact-item">
+          <span class="label">CNPJ</span>
+          <span>03.108.774/0001-29</span>
+        </div>
+        <div class="cta-contact-item">
+          <span class="label">E-mail</span>
+          <span>idestrn@hotmail.com</span>
+        </div>
+        <div class="cta-contact-item">
+          <span class="label">Telefone</span>
+          <span>(84) 99708-1243</span>
+        </div>
+        <div class="cta-contact-item">
+          <span class="label">Endereco</span>
+          <span>Av. Romualdo Galvao, 532, Barro Vermelho, Sl 17, Natal/RN</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 48px; font-size: 14px; opacity: 0.5; position: relative; z-index: 1;">
+      REDE ACOLHER &bull; CENTRO DE DEFESA E AMPARO EM SAUDE &bull; CEDAS
+    </p>
+  </div>
+</section>
+
+<script>
+// ===== SLIDE SYSTEM =====
+const slides = document.querySelectorAll('.slide');
+const navLinks = document.querySelectorAll('.nav-links a');
+const progressBar = document.getElementById('progressBar');
+const slideCounter = document.getElementById('slideCounter');
+const nav = document.getElementById('nav');
+const totalSlides = slides.length;
+
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelector('.slide-content')?.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+slides.forEach(slide => observer.observe(slide));
+
+// Scroll tracking
+function updateOnScroll() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  progressBar.style.width = progress + '%';
+
+  // Nav shadow
+  nav.classList.toggle('scrolled', scrollTop > 50);
+
+  // Active nav link & slide counter
+  let currentSlide = 0;
+  slides.forEach((slide, i) => {
+    const rect = slide.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2) currentSlide = i;
+  });
+
+  slideCounter.textContent = (currentSlide + 1) + ' / ' + totalSlides;
+
+  navLinks.forEach(link => link.classList.remove('active'));
+  const currentId = slides[currentSlide]?.id;
+  if (currentId) {
+    const activeLink = document.querySelector(`.nav-links a[href="#${currentId}"]`);
+    if (activeLink) activeLink.classList.add('active');
+  }
+}
+
+window.addEventListener('scroll', updateOnScroll, { passive: true });
+updateOnScroll();
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+    e.preventDefault();
+    navigateSlide(1);
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    navigateSlide(-1);
+  } else if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  }
+});
+
+function getCurrentSlideIndex() {
+  let current = 0;
+  slides.forEach((slide, i) => {
+    const rect = slide.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2) current = i;
+  });
+  return current;
+}
+
+function navigateSlide(direction) {
+  const current = getCurrentSlideIndex();
+  const next = Math.max(0, Math.min(totalSlides - 1, current + direction));
+  slides[next].scrollIntoView({ behavior: 'smooth' });
+}
+
+function scrollToSlide(index) {
+  slides[index]?.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Mobile menu
+document.getElementById('mobileBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close mobile menu on link click
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Initial animation
+window.addEventListener('load', () => {
+  slides[0].querySelector('.slide-content')?.classList.add('visible');
+});
+</script>
+
+</body>
+</html>
